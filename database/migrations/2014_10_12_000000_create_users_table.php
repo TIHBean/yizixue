@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('role');
-            $table->string('birth_day')->nullable();
+            $table->datetime('birth_day')->default('1900-01-01 00:00:00');
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('line')->unique();

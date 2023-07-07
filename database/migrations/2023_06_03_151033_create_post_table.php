@@ -17,10 +17,10 @@ class CreatePostTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('author'); // uid
-            $table->string('image_path');
+            $table->string('image_path')->default('NA');
             $table->text('body');
-            $table->string('category');
-            $table->string('tag'); // tag 不能夠超過N個
+            $table->string('category')->default('NA');
+            $table->string('tag')->default('NA'); // tag 不能夠超過N個
             $table->string('state')->default('approve'); // ban/approve
             $table->timestamps();
         });

@@ -29,8 +29,12 @@ class PostController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('title', __('Title'));
         $grid->column('author', __('Author'));
-        $grid->column('image_path', __('Image path'));
-        $grid->column('body', __('Body'));
+        $grid->column('image_path', __('Image path'))->display(function($image_path){
+            return '<img src="'.env('APP_URL').'/uploads/'.$image_path.'" style="width:auto;height:auto;max-width:100%;max-height:100%;">';
+        });
+        $grid->column('body', __('Body'))->display(function($body){
+            return $body;
+        });
         $grid->column('category', __('Category'));
         $grid->column('tag', __('Tag'));
         $grid->column('state', __('State'));
@@ -75,7 +79,7 @@ class PostController extends AdminController
 
         $form->text('title', __('Title'));
         $form->text('author', __('Author'));
-        $form->text('image_path', __('Image path'));
+        $form->image('image_path', __('Image path'));
         // $form->textarea('body', __('Body'));
         $form->ckeditor('body', __('Body'));
         $form->text('category', __('Category'));
