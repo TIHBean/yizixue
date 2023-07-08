@@ -27,21 +27,23 @@ class UserController extends AdminController
         $grid = new Grid(new User());
 
         $grid->column('id', __('Id'));
-        $grid->column('avatar', __('Avatar'));
         // $grid->column('portfolio_id', __('Portfolio Id'));
         $grid->column('name', __('Name'));
+        $grid->column('avatar', __('Avatar'))->display(function($image_path){
+            return '<img src="'.env('APP_URL').'/uploads/'.$image_path.'" style="width:90px;">';
+        });
         $grid->column('role', __('Role'));
         $grid->column('birth_day', __('Birth day'));
         $grid->column('email', __('Email'));
         $grid->column('phone', __('Phone'));
         $grid->column('line', __('Line'));
         $grid->column('address', __('Address'));
-        $grid->column('password', __('Password'));
+        //$grid->column('password', __('Password'));
         $grid->column('ispaied', __('Ispaied'));
         $grid->column('expired', __('Expired'));
         $grid->column('state', __('State'));
         $grid->column('rate', __('Rate'));
-        $grid->column('description', __('Description'));
+        //$grid->column('description', __('Description'));
         //$grid->column('remember_token', __('Remember token'));
         $grid->column('created_at', __('Created at'));
         //$grid->column('updated_at', __('Updated at'));

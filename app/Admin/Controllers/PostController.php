@@ -3,6 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Post;
+use App\User;
+use App\Category;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -77,12 +79,26 @@ class PostController extends AdminController
     {
         $form = new Form(new Post());
 
+        $_users = User::all();
+        $_usersMap = array();
+        foreach($_users as $item)
+        {
+            $_usersMap[$item->id] = $item->name . "(". $item->id .")";
+        }
+
+        $_categories = Category::all();
+        $_categoriesMap = array();
+        foreach($_categories as $item)
+        {
+            $_categoriesMap[$item->id] = $item->name . "(". $item->slug .")";
+        }
+
         $form->text('title', __('Title'));
-        $form->text('author', __('Author'));
+        $form->select('author', __('Author'))->options($_usersMap);
         $form->image('image_path', __('Image path'));
         // $form->textarea('body', __('Body'));
         $form->ckeditor('body', __('Body'));
-        $form->text('category', __('Category'));
+        $form->select('category', __('Category'))->options($_categoriesMap);
         $form->text('tag', __('Tag'));
         $form->text('state', __('State'))->default('approve');
 

@@ -10,6 +10,6 @@ class UserController extends Controller
     public function GetAll()
     {
         $user = User::all();
-        return json_encode($user);
+        return json_encode($user, JSON_UNESCAPED_UNICODE);
     }
 }

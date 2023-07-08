@@ -17,7 +17,10 @@ Route::get('/', function () {
 
 
 Route::get('/user/get', 'UserController@GetAll');
+Route::get('/post/get', 'PostController@GetAll');
 
 Auth::routes();
 
+Route::get('/home/post', 'PostController@index')->name('post');
+Route::post('/home/post/create', 'PostController@create')->name('create-post');
 Route::get('/home', 'HomeController@index')->name('home');
