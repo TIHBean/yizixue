@@ -38,7 +38,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="tag" class="form-label">Tag</label>
-                    <input type="text" name="tag" class="form-control">
+                    <input type="text" value="NA" name="tag" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

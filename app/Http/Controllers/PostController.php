@@ -53,8 +53,12 @@ class PostController extends Controller
 
     public function GetAll()
     {
-        $post = Post::all();
-        dd($post);
-        return json_encode($post, JSON_UNESCAPED_UNICODE);
+        $posts = Post::all();
+        $cnameArr = array();
+        foreach($posts as $post) {
+            $cname = Category::where('id', $post->category)->first()->name;
+            array_push($cnameArr, $cname);
+        }
+        return json_encode([$posts, $cnameArr], JSON_UNESCAPED_UNICODE);
     }
 }
